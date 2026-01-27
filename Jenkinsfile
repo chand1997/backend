@@ -5,6 +5,7 @@ pipeline{
         component = "backend"
         appVersion = ""
         acc_id = "353654037274"
+        yo = "bhai"
     }
     stages{
         stage("Read Version"){
@@ -27,7 +28,7 @@ pipeline{
                            docker build -t ${acc_id}.dkr.ecr.us-east-1.amazonaws.com/${project}/${component}:${appVersion} .
 
                            docker push ${acc_id}.dkr.ecr.us-east-1.amazonaws.com/${project}/${component}:${appVersion} 
-                           
+
                         """
                     }
                 }
