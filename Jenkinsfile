@@ -7,6 +7,9 @@ pipeline{
         acc_id = "353654037274"
         yo = "bhai"
     }
+     parameters{
+        booleanParam(name: 'build', defaultValue: false, description: 'Toggle this value')
+    }
     stages{
         stage("Read Version"){
             steps{
@@ -33,6 +36,14 @@ pipeline{
                     }
                 }
                 
+            }
+        }
+        stage("trigger-cd"){
+            when{
+                expression { params.build }
+            }
+            steps{
+                 build job: 'backend-cd', parameters: [string(name: 'version', value: "${appVersion}")], wait: false
             }
         }
     }
